@@ -95,12 +95,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button buttonNew = findViewById(R.id.buttonAddLocation);
         Button logoutButton = findViewById(R.id.logoutButton);
-//        Button testMapButton = findViewById(R.id.testMapButton);
+        Button testMapButton = findViewById(R.id.testMapButton);
 
 
         buttonNew.setOnClickListener(this);
         logoutButton.setOnClickListener(this);
-//        testMapButton.setOnClickListener(this);
+        testMapButton.setOnClickListener(this);
 
 
         loadUserCities();
@@ -146,6 +146,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.logoutButton) {
             authManager.logout();
             navigateToLogin();
+        } else if (id == R.id.testMapButton){
+            intent = new Intent(this, MapsMarkerActivity.class);
+            startActivity(intent);
         }
 
 
