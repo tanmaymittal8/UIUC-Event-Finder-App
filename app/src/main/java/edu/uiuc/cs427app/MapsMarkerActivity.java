@@ -27,7 +27,7 @@ public class MapsMarkerActivity extends AppCompatActivity {
         // Load the Map by default when app starts
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new SupportMapFragment())
+                    .replace(R.id.fragment_container, new MapTabFragment())
                     .commit();
         }
 
@@ -41,7 +41,7 @@ public class MapsMarkerActivity extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         // User clicked "Map"
-                        selectedFragment = new SupportMapFragment();
+                        selectedFragment = new MapTabFragment();
                         break;
                     case 1:
                         // User clicked "My Events"
