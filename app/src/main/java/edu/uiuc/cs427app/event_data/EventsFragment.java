@@ -39,7 +39,19 @@ public class EventsFragment extends Fragment {
         myEvents = EventRepository.getInstance().getEvents();
 
         adapter = new EventsAdapter(myEvents, event -> {
-            Toast.makeText(getContext(), "Clicked: " + event.getTitle(), Toast.LENGTH_SHORT).show();
+
+//            Toast.makeText(getContext(), "Clicked: " + event.getTitle(), Toast.LENGTH_SHORT).show();
+            EventDetailFragment detailFragment = EventDetailFragment.newInstance(
+                    event.getTitle(),
+                    event.getLocationStr(),
+                    event.getDescription()
+            );
+
+            // Perform the swap
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, detailFragment) // R.id.fragment_container is from your Activity layout
+                    .addToBackStack(null) // This allows the "Back" button to work
+                    .commit();
         });
         recyclerView.setAdapter(adapter);
 

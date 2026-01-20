@@ -65,6 +65,7 @@ public class MapTabFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         refreshMarkers(); // Initial load
 
         // 1. Get the shared events
