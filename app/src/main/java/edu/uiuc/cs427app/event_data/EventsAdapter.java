@@ -10,6 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.uiuc.cs427app.R;
+import edu.uiuc.cs427app.event_data.EventsFragment;
+import edu.uiuc.cs427app.event_data.AppEvent;
+import edu.uiuc.cs427app.event_data.EventRepository;
+
+
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewHolder> {
 

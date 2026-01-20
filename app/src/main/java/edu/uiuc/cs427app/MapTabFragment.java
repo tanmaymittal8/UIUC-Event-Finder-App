@@ -39,9 +39,33 @@ public class MapTabFragment extends Fragment implements OnMapReadyCallback {
         return view;
     }
 
+    // In MapTabFragment.java
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // If the map is ready, reload the markers
+        if (mMap != null) {
+            refreshMarkers();
+        }
+    }
+
+    // Move your marker logic into a helper method
+    private void refreshMarkers() {
+        mMap.clear(); // Clear old markers so we don't get duplicates
+        List<AppEvent> events = EventRepository.getInstance().getEvents();
+
+        new Thread(() -> {
+            // ... (Existing Geocoding logic) ...
+            // ... (runOnUiThread to add markers) ...
+        }).start();
+    }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        refreshMarkers(); // Initial load
 
         // 1. Get the shared events
         List<AppEvent> events = EventRepository.getInstance().getEvents();

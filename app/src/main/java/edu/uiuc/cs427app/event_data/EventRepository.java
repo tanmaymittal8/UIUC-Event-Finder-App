@@ -10,11 +10,11 @@ public class EventRepository {
     private EventRepository() {
         events = new ArrayList<>();
         // Use Specific Addresses for Geocoding to work best!
-        events.add(new AppEvent("Study Group: CS 427", "Siebel Center for Computer Science, Urbana, IL"));
-        events.add(new AppEvent("Hackathon Planning", "Grainger Engineering Library, Urbana, IL"));
-        events.add(new AppEvent("Lunch at Green St", "Mia Za's, Green St, Champaign, IL"));
-        events.add(new AppEvent("Gym Session", "ARC, Peabody Dr, Champaign, IL"));
-        events.add(new AppEvent("Project Demo", "Illini Union, Urbana, IL"));
+        events.add(new AppEvent("Study Group: CS 427", "Siebel Center for Computer Science, Urbana, IL", "test"));
+        events.add(new AppEvent("Hackathon Planning", "Grainger Engineering Library, Urbana, IL", "test"));
+        events.add(new AppEvent("Lunch at Green St", "Mia Za's, Green St, Champaign, IL", "test"));
+        events.add(new AppEvent("Gym Session", "ARC, Peabody Dr, Champaign, IL", "test"));
+        events.add(new AppEvent("Project Demo", "Illini Union, Urbana, IL", "test"));
     }
 
     public static synchronized EventRepository getInstance() {
@@ -22,6 +22,10 @@ public class EventRepository {
             instance = new EventRepository();
         }
         return instance;
+    }
+
+    public void addEvent(AppEvent event) {
+        events.add(event);
     }
 
     public List<AppEvent> getEvents() {
