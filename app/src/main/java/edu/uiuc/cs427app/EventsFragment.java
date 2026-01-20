@@ -1,6 +1,5 @@
 package edu.uiuc.cs427app;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +7,36 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventsFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // This links the Java logic to the XML layout we just created
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_events, container, false);
+
+        // 1. Find the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events);
+
+        // 2. Setup the Layout Manager (Lists need to know how to stack items)
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // 3. Create some dummy data
+        List<String> myEvents = new ArrayList<>();
+        myEvents.add("Study Group: CS 427");
+        myEvents.add("Hackathon Planning");
+        myEvents.add("Lunch at Green St");
+        myEvents.add("Gym Session");
+        myEvents.add("Project Demo");
+
+        // 4. Attach the Adapter
+        EventsAdapter adapter = new EventsAdapter(myEvents);
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 }
