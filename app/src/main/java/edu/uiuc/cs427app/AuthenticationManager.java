@@ -34,6 +34,30 @@ public class AuthenticationManager {
         loadCurrentUser();
     }
 
+    // Add this method to AuthenticationManager.java
+
+    /**
+     * Updates the user's profile information (Name and Bio).
+     *
+     * @param name The real name of the user
+     * @param bio The user's biography
+     * @return true if update successful
+     */
+    public boolean updateUserProfile(String name, String bio) {
+        if (currentUser == null) return false;
+
+        // 1. Update the in-memory user object
+        currentUser.setName(name);
+        currentUser.setBio(bio);
+
+        // 2. Save to SharedPreferences so it persists across app restarts
+        saveCurrentUser();
+
+        // 3. Update the SQLite Database
+        // You must add this method to your DatabaseHelper class!
+        return databaseHelper.updateUserProfile(currentUser.getUsername(), name, bio);
+    }
+
     /**
      * Gets the singleton instance of AuthenticationManager.
      *

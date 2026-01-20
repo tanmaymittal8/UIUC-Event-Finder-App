@@ -12,6 +12,9 @@ public class User {
 
     private String themeJson;  // nullable
 
+    private String name; // Add this
+    private String bio;  // Add this
+
 
     /**
      * Constructor to create a new User object with user ID.
@@ -112,6 +115,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
     /**
      * Gets the theme JSON specification.
      *
