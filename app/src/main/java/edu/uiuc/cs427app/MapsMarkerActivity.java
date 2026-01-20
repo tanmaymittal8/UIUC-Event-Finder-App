@@ -1,19 +1,14 @@
 package edu.uiuc.cs427app; // Changed to match your project package
 
 import android.os.Bundle;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import androidx.fragment.app.Fragment;
-import com.google.android.gms.maps.SupportMapFragment;
+
 import com.google.android.material.tabs.TabLayout;
+
+import edu.uiuc.cs427app.event_data.EventsFragment;
 
 public class MapsMarkerActivity extends AppCompatActivity {
 
