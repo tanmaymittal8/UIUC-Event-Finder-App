@@ -1,4 +1,5 @@
 package edu.uiuc.cs427app;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,20 @@ import java.util.List;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewHolder> {
 
-    private List<String> eventList; // We will just store Event Names for now
+    private List<String> eventList;
+    private OnItemClickListener listener; // 1. Add a listener variable
 
-    // Constructor: Receives data when we create the adapter
-    public EventsAdapter(List<String> eventList) {
-        this.eventList = eventList;
+    // 2. Define the Interface
+    public interface OnItemClickListener {
+        void onItemClick(String eventName);
     }
 
-    // 1. Create a new row (inflates the XML we made in Step 1)
+    // 3. Update Constructor to accept the listener
+    public EventsAdapter(List<String> eventList, OnItemClickListener listener) {
+        this.eventList = eventList;
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,21 +32,26 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
         return new EventViewHolder(view);
     }
 
-    // 2. Fill the row with data (sets the text)
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         String eventName = eventList.get(position);
         holder.titleText.setText(eventName);
         holder.locationText.setText("Campus Location " + (position + 1));
+
+        // 4. Set the Click Listener on the whole row (itemView)
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(eventName); // Pass the data back to the Fragment
+            }
+        });
     }
 
-    // 3. Count how many items we have
     @Override
     public int getItemCount() {
         return eventList.size();
     }
 
-    // Helper class to hold the views
     public static class EventViewHolder extends RecyclerView.ViewHolder {
         TextView titleText;
         TextView locationText;

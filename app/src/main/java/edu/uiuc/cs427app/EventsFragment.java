@@ -1,9 +1,9 @@
 package edu.uiuc.cs427app;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast; // Import Toast
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,13 +19,9 @@ public class EventsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
-        // 1. Find the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events);
-
-        // 2. Setup the Layout Manager (Lists need to know how to stack items)
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // 3. Create some dummy data
         List<String> myEvents = new ArrayList<>();
         myEvents.add("Study Group: CS 427");
         myEvents.add("Hackathon Planning");
@@ -33,8 +29,17 @@ public class EventsFragment extends Fragment {
         myEvents.add("Gym Session");
         myEvents.add("Project Demo");
 
-        // 4. Attach the Adapter
-        EventsAdapter adapter = new EventsAdapter(myEvents);
+        // CHANGE: Pass the listener (lambda) as the second argument
+        EventsAdapter adapter = new EventsAdapter(myEvents, new EventsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String eventName) {
+                // This code runs when an item is clicked
+                Toast.makeText(getContext(), "Clicked: " + eventName, Toast.LENGTH_SHORT).show();
+
+                // later, you can replace this Toast with code to open a Detail Fragment
+            }
+        });
+
         recyclerView.setAdapter(adapter);
 
         return view;
