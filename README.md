@@ -36,10 +36,8 @@
 
 ---
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 To run this project locally, you will need **Android Studio**.
 
 1. **Clone the repository**
-   ```bash
-   git clone [https://github.com/yourusername/QuadCompass.git](https://github.com/yourusername/QuadCompass.git)
